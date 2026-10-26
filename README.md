@@ -136,3 +136,8 @@ have been pinning the hash
  rather than the tag (`3-3.14-trixie`). There are trade-offs to both routes.
  I've seen some indications that Depandabot can help with this if one goes the
  hash route.
+
+ ## Running the app
+
+ From a terminal inside the development container:
+ `python ./my_amazing_app.py`
