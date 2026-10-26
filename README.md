@@ -39,10 +39,12 @@ Myself and a few collaborators with whom I'm discussing this journey.
 
 ### Windows Shared with Container
 
-To have one copy stored on Windows but shared with the DevContainer
+To have one copy stored on Windows but shared with the DevContainer. 
+
+Run Docker Desktop before opening in a container. 
 
 1. Open VSCode to the folder you cloned the repo.
-2. **Command Pallette → Dev Containers: Reopen in Container**.
+2. **Command Pallette (Ctrl-Shift-P) → Dev Containers: Reopen in Container**.
 
 If succcessful you should be able to tell by a few signs.
 
