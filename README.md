@@ -74,7 +74,65 @@ If succcessful you should be able to tell by a few signs.
 - If you open a Terminal in VSCode and do `touch example.dat`, the file will
   also become visible on your windows filesystem.
 
+This is what I'm doing.
+
+The advantage is you can see your files with File Explorer and also other
+tools you have locally. It also saves on keeping multiple redundant copies.
+
+The biggest drawbacks are
+1. Needing to make sure line terminators don't get messed up. I've addressed
+   that with a `.gitattributes` file that _should_ help.
+2. Performance of filesystem operations from inside the container is less good
+   than with volume options. Might not matter on some things. For things like
+   doing a package manager install in the shared source tree, this can be big.
+   There is an article in the VSCode documentation on having a volume mounted
+   to a subfolder of the share to game that performance:
+   <https://code.visualstudio.com/remote/advancedcontainers/improve-performance#_use-a-targeted-named-volume>.
+   While it talks about Node, I'm not sure to what degree similar applies in
+   Python.
+
 ### Windows Copy with independent container copy
 
 1. Open VSCode to the folder you cloned the repo.
-2. **Command Pallette → Dev Containers: Clone Repository in Container Volume**.
+2. When the toast notification pops up to tell you about devcontainers, select
+   the option to clone in volume.
+
+There might be another way to do this, but I struggle to find the command
+sequence.
+
+This will look very similar to the previous. Really, two things will
+distinguish it:
+
+- If you open a Terminal in VSCode and do `touch proof-of-isolation.dat`, the
+  fill will **not** become visible on your windows filesystem.
+- In **Remote Explorer** on the left side, the node for
+  **Devcontainer-Experiment-Python** will show two Volume mounts, contrast the
+  above that shows _one_ Volume mount and one _bind_ mount.
+
+### Container copy only
+
+1. Open VSCode.
+2. **Command Pallette → Dev Containers: Clone Repository in Container Volume**
+   and provide the GitHub Clone URL.
+
+This will be very hard to distinguish from the independent copies version
+above.
+
+There are variations on this like using a Named Container Volume. I haven't
+experimented with them.
+
+## Benefits
+
+Regardless of which of the big three options you do with your source location
+you should be able to see that a terminal `python --version` succeeds and
+reports `Python 3.14.8` (or possibly a higher 3.14 version, if you are reading
+this in the future). The `.devcontainer/devcontainer.json` picked a container
+image tag that does have its publisher update it for updates to the third
+component of the Python version, so, in theory, if the day after I commit
+this, Python 3.14.9 releases and the DevContainer equivalent to Docker Hub
+updates to use it, you might see `Python 3.14.9` instead. The alternative would
+have been pinning the hash
+ (`sha256:28835c112fd097cb6d2fe1e195b660d66ae051859070a9b871fa2308f35897d3`)
+ rather than the tag (`3-3.14-trixie`). There are trade-offs to both routes.
+ I've seen some indications that Depandabot can help with this if one goes the
+ hash route.
