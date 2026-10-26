@@ -39,35 +39,42 @@ Myself and a few collaborators with whom I'm discussing this journey.
 
 ### Windows Shared with Container
 
-   To have one copy stored on Windows but shared with the DevContainer
+To have one copy stored on Windows but shared with the DevContainer
 
-   1. Open VSCode to the folder you cloned the repo.
-   2. **Command Pallette → Dev Containers: Reopen in Container**.
+1. Open VSCode to the folder you cloned the repo.
+2. **Command Pallette → Dev Containers: Reopen in Container**.
 
-   If succcessful you should be able to tell by a few signs.
+If succcessful you should be able to tell by a few signs.
 
-   - Badge in lower left of VSCode says "Dev Container: Python 3 @
-     desktop-linux"
-   - Explorer has "\[Dev Container: Python 3 @ desktop-linux\]" appended
-     after the folder name.
-   - Extensions shows \[at least\] three sections:
-     1. Local - Installed
+- Badge in lower left of VSCode says "Dev Container: Python 3 @ desktop-linux"
+- Explorer has "\[Dev Container: Python 3 @ desktop-linux\]" appended after
+  the folder name.
+- Extensions shows \[at least\] three sections:
+  1. Local - Installed
 
-       This section will vary but will probably have at least:
-       - Dev Containers
+     This section will vary but will probably have at least:
+     - Dev Containers
 
-       One thing I like about this is that I won't have Extension Bloat
-       where an extension I needed for one repo for 2 days bloats my machine
-       forever. Such things will be in the second section.
-     2. Dev Container: Python 3 @ desktop-linux - Installed
+     One thing I like about this is that I won't have Extension Bloat
+     where an extension I needed for one repo for 2 days bloats my machine
+     forever. Such things will be in the second section.
+  2. Dev Container: Python 3 @ desktop-linux - Installed
 
-        This section should include:
-        - autopep8
-        - ESLint
-        - Pylance
-        - Python
-        - Python Debugger
-        - Python Environments
-     3. Recommended
+     This section should include:
+     - autopep8
+     - ESLint
+     - Pylance
+     - Python
+     - Python Debugger
+     - Python Environments
+  3. Recommended
 
-        This is less predictable.
+     This is less predictable. It is going to vary based on what VSCode thinks
+     at the time you look.
+- If you open a Terminal in VSCode and do `touch example.dat`, the file will
+  also become visible on your windows filesystem.
+
+### Windows Copy with independent container copy
+
+1. Open VSCode to the folder you cloned the repo.
+2. **Command Pallette → Dev Containers: Clone Repository in Container Volume**.
