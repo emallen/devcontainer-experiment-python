@@ -62,11 +62,14 @@ If succcessful you should be able to tell by a few signs.
 
      This section should include:
      - autopep8
+     - EditorConfig
      - ESLint
+     - markdownlint
      - Pylance
      - Python
      - Python Debugger
      - Python Environments
+
   3. Recommended
 
      This is less predictable. It is going to vary based on what VSCode thinks

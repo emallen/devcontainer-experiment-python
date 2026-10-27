@@ -3,10 +3,14 @@
 {
 	"name": "Python 3",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/python:3-3.14-trixie"
+	"image": "mcr.microsoft.com/devcontainers/python:3-3.14-trixie",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
+
+	// Use 'portsAttributes' to set default properties for specific forwarded ports.
+	// More info: https://containers.dev/implementors/json_reference/#port-attributes
+	// "portsAttributes": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
@@ -15,7 +19,15 @@
 	// "postCreateCommand": "pip3 install --user -r requirements.txt",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"EditorConfig.EditorConfig",
+				"DavidAnson.vscode-markdownlint"
+			]
+		}
+	}
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"
