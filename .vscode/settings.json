@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    ".editorconfig": "editorconfig"
+  },
+  "remote.autoForwardPortsSource": "process",
+  "remote.autoForwardPortsFallback": 0
+}
