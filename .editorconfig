@@ -15,5 +15,6 @@ indent_style = space
 indent_size = 2
 
 [*.{[cC][mM][dD],[bB][aA][tT]}]
+# In truth, we want IBM437; latin1 is the closest we may be able to get.
 charset = latin1
 end_of_line = crlf
