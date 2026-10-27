@@ -125,6 +125,16 @@ above.
 There are variations on this like using a Named Container Volume. I haven't
 experimented with them.
 
+### Missing something
+
+If you are missing someting, in particular an extension not present in the
+initial release of the Dev Container, use
+**Command Pallette → Dev Containers: Rebuild Container**.
+Note that the `F1` key will put focus into the box that is several tools,
+including the **Command Pallette** and prefix with "> " (a greater-than sign
+followed by a space) which makes the shared box behave in **Command Pallette**
+mode rather than the default mode.
+
 ## Benefits
 
 Regardless of which of the big three options you do with your source location
