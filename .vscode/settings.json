@@ -2,6 +2,11 @@
   "files.associations": {
     ".editorconfig": "editorconfig"
   },
+  "[python]": {
+      "editor.defaultFormatter": "ms-python.autopep8",
+      "editor.formatOnPaste": true,
+      "editor.formatOnSave": true
+  },
   "remote.autoForwardPortsSource": "process",
   "remote.autoForwardPortsFallback": 0
 }
