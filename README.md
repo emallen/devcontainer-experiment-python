@@ -62,11 +62,14 @@ If succcessful you should be able to tell by a few signs.
 
      This section should include:
      - autopep8
+     - EditorConfig
      - ESLint
+     - markdownlint
      - Pylance
      - Python
      - Python Debugger
      - Python Environments
+
   3. Recommended
 
      This is less predictable. It is going to vary based on what VSCode thinks
@@ -80,6 +83,7 @@ The advantage is you can see your files with File Explorer and also other
 tools you have locally. It also saves on keeping multiple redundant copies.
 
 The biggest drawbacks are
+
 1. Needing to make sure line terminators don't get messed up. I've addressed
    that with a `.gitattributes` file that _should_ help.
 2. Performance of filesystem operations from inside the container is less good
@@ -121,6 +125,17 @@ above.
 There are variations on this like using a Named Container Volume. I haven't
 experimented with them.
 
+### Missing something
+
+If you are missing someting, in particular an extension not present in the
+initial release of the Dev Container, use
+**Command Pallette → Dev Containers: Rebuild Container**.
+Note that the `F1` key will put focus into the Quick Access box that is
+several tools, including the **Command Pallette** and prefix
+with <!-- markdownlint-disable-next-line MD038  -->
+ `> ` (a greater-than sign followed by a space) which makes the shared box
+behave in **Command Pallette** mode rather than the default mode.
+
 ## Benefits
 
 Regardless of which of the big three options you do with your source location
@@ -137,7 +152,7 @@ have been pinning the hash
  I've seen some indications that Depandabot can help with this if one goes the
  hash route.
 
- ## Running the app
+## Running the app
 
  From a terminal inside the development container:
  `python ./my_amazing_app.py`
