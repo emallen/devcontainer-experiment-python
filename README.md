@@ -83,6 +83,7 @@ The advantage is you can see your files with File Explorer and also other
 tools you have locally. It also saves on keeping multiple redundant copies.
 
 The biggest drawbacks are
+
 1. Needing to make sure line terminators don't get messed up. I've addressed
    that with a `.gitattributes` file that _should_ help.
 2. Performance of filesystem operations from inside the container is less good
@@ -140,7 +141,7 @@ have been pinning the hash
  I've seen some indications that Depandabot can help with this if one goes the
  hash route.
 
- ## Running the app
+## Running the app
 
  From a terminal inside the development container:
  `python ./my_amazing_app.py`
