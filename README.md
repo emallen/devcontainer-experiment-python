@@ -152,6 +152,70 @@ have been pinning the hash
  I've seen some indications that Depandabot can help with this if one goes the
  hash route.
 
+### Automatic formatting
+
+Among the reasons that Dev Containers gain popularity is the ability to
+automate enforcement of a team's coding standards, (e.g. indentation choices).
+Tool-based enforcement means that code review can focus on important things,
+like "this implements the spec wrong" or "the performance of this algorithm
+will be bad" or "I think you missed a crashing edge case here", rather than
+spending all their time arguing about "you indented with tabs" or "you
+indented with 2 spaces but the team standard says 4".
+
+To that end, several tools are enlisted by this Dev Container.
+
+1. **autopep8**
+   - Pre-installed by the Microsoft-provided Python devcontainer
+   - Implements PEP 8 style guide, written by Guido van Rossum, the Creator
+     and former "benevolent dictator for life" of Python.
+
+     Since we need to start somewhere, this seems like a good place.
+   - Activated by adding the following to `.vscode/settings.json`.
+
+     ```jsonc
+      "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8",
+        "editor.formatOnPaste": true,
+        "editor.formatOnSave": true
+      },
+
+     ```
+
+2. **EditorConfig**
+   - Not part of the Microsoft stock devcontainer, added via extension
+     installation.
+   - Helps with editors that aren't VSCode.
+   - Helps VSCode too by avoiding the need to have the autoformatters
+   - Known limitation right now that batch files need to be the OEM code
+     page (`cp437` aka `IBM437` on U.S. Windows), but the vscode plugin
+     for editorconfig only supports the editorconfig-spec-mandated encodings.
+     For now, `git` knows that this is the true encoding (see below), and
+     **EditorConfig** uses `latin1`, often "close enough" except when it is
+     not.
+3. **markdownlint**
+   - Not part of the Microsoft stock devcontainer, added via extension
+     installation.
+   - Currently configured to warn only. It could be configured to
+     automatically format by adding something like the following to
+     `.vscode/settings.json`.
+
+     ```jsonc
+     "[markdown]": {
+       "editor.formatOnSave": true,
+       "editor.formatOnPaste": true
+     },
+     ```
+
+     As to why this is not automatically enforced yet, it has to do with me
+     not having the chance to gain enough familiarity with the tool and also
+     noting that some options need to be altered from the default settings
+     before I would be comfortable adding auto-formatting.
+4. `.gitattributes`
+   - Worth noting because of its ability to avoid problems with Windows and
+     Linux Dev Containers sharing a filesystem for line endings.
+   - Second note that it can correctly understand that Batch Files / Command
+     Scripts are `IBM437` when other tools cannot.
+
 ## Running the app
 
  From a terminal inside the development container:
