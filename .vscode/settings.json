@@ -18,8 +18,11 @@
       "editor.formatOnPaste": true,
       "editor.formatOnSave": true
   },
-  "[editorconfig]": {
+  "[editorconfig][json][jsonc]": {
     "editor.rulers": [78]
+  },
+  "[markdown]": {
+    "editor.rulers": [78, 80]
   },
   "remote.autoForwardPortsSource": "process",
   "remote.autoForwardPortsFallback": 0
