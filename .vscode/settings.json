@@ -1,3 +1,4 @@
+// -*- mode: jsonc -*-
 {
     // About comments: The VSCode release notes for version 1.19 documented
     // the addition of `jsonc` in addition to `json` format, as well as
