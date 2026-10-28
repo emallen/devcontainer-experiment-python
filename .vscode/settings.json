@@ -18,6 +18,9 @@
       "editor.formatOnPaste": true,
       "editor.formatOnSave": true
   },
+  "[editorconfig]": {
+    "editor.rulers": [78]
+  },
   "remote.autoForwardPortsSource": "process",
   "remote.autoForwardPortsFallback": 0
 }
