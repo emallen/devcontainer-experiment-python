@@ -9,8 +9,11 @@
     // when published in November 2017.
     // https://code.visualstudio.com/updates/v1_19#_json-with-comments
     //
-    // https://jsonc.org/ seems to be the JSON with Comments documentation.
-    "version": "0.2.0",
+    // https://jsonc.org/ is, in fact, the JSON with Comments documentation,
+    // and notes that it was introduced for VS Code Configuration.
+    // This is also why trailing commas do not break things.
+    // https://jsonc.org/#trailing-commas
+   "version": "0.2.0",
     "configurations": [
         {
             "name": "Launch Program",

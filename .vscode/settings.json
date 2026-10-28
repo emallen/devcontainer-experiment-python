@@ -1,11 +1,14 @@
 {
-     // About comments: The VSCode release notes for version 1.19 documented
+    // About comments: The VSCode release notes for version 1.19 documented
     // the addition of `jsonc` in addition to `json` format, as well as
     // noting that VSCode Configuration files are `jsonc` (JSON with Comments)
     // when published in November 2017.
     // https://code.visualstudio.com/updates/v1_19#_json-with-comments
     //
-    // https://jsonc.org/ seems to be the JSON with Comments documentation.
+    // https://jsonc.org/ is, in fact, the JSON with Comments documentation,
+    // and notes that it was introduced for VS Code Configuration.
+    // This is also why trailing commas do not break things.
+    // https://jsonc.org/#trailing-commas
   "files.associations": {
     ".editorconfig": "editorconfig"
   },
