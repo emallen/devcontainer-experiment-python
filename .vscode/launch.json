@@ -14,7 +14,7 @@
     // and notes that it was introduced for VS Code Configuration.
     // This is also why trailing commas do not break things.
     // https://jsonc.org/#trailing-commas
-   "version": "0.2.0",
+    "version": "0.2.0",
     "configurations": [
         {
             "name": "Launch Program",
