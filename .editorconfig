@@ -15,7 +15,7 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 4
 
-[*.{json,yml,yaml}]
+[*.{json,jsonc,yml,yaml}]
 # A source for these choices can be found at
 # https://github.com/microsoft/json-document-transforms/blob/main/.editorconfig
 indent_style = space
