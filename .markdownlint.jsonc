@@ -1,0 +1,55 @@
+// See https://github.com/DavidAnson/markdownlint#optionsconfig
+// and https://github.com/DavidAnson/markdownlint-cli2#configuration
+{
+  // I want headers to be leading `#` or `##` only.
+  "MD003": { "style": "atx" },
+
+  // Use hyphen-minus (spelled dash in markdownlint) for the unordered list
+  // marker.
+  "MD004": { "style": "dash" },
+
+  // Enforcement of no trailing whitespace.
+  // The default allows two spaces for a `<br/>` element to be emitted.
+  // "strict", which defaults off, flags two trailning spaces when they
+  // do not actually emit a `<br/>`, such as on the last line of a paragraph.
+  // Two trailing spaces mid-paragraph is still permitted.
+  // The default permits trailing spaces in code blocks because some languages
+  // require that. In Python that's not the case, so we'll enforce it.
+  "MD009": { "code_blocks": true, "strict": true },
+
+  // https://spec.commonmark.org/0.31.2/#tabs says tabs are treated as-if
+  // they had a tabstop of 4. I think setting spaces_per_tab in the
+  // autocorrect options to 4 over the default 1 is the closest I can get to
+  // that.
+  "MD010": { "spaces_per_tab": 4 },
+
+  // Line length is disabled by default. It is the only off-by-default rule.
+  // turn it on.
+  "MD013": {
+    "enabled": true,
+
+    // I'm torn on "code_blocks". It defaults to enforcing line length
+    // in code blocks. I don't anticipate needing to disable them there.
+    // but will entertain doing so, should the need arise.
+
+    // Headings can need to be long since they cannot be continued on the
+    // next line.
+    "headings": false,
+
+    // Optional "stern" and "strict" modes.
+    //
+    // "stern" bugs you if a much earlier line break could avoid going over.
+    // Leaving this off.
+    //
+    // "strict" bugs you if you've broken as early as was possible and are
+    // still over. Turning this on.
+    "stern": true,
+
+    // Give an escape-hatch for Markdown Tables, which can get unwieldy.
+    "tables": false
+  }
+
+  // MD024 governs duplicate headings. I will entertain setting siblings_only
+  // should the need arise (as it will if we add a CHANGELOG.md)
+
+}
