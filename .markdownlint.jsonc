@@ -207,5 +207,47 @@
     // [http://example.com/inlined](http://example.com/inlined) should be
     // <http://example.com/inlined>
     "url_inline": false
+  },
+
+  "MD055": {
+    // MD055 governs what level of consistency to enforce around the pipe
+    // characters in tables.
+    //
+    // Note that tables are not part of CommonMark; they are introduced by
+    // GitHub Flavored Markdown and also several other extensions.
+    //
+    // In GFM, the leading and trailing pipe are optional.
+    //
+    // MD055 defaults to the first header of the first table setting the tone.
+    // It also allows a per_table setting that allows each table to be
+    // consistent with only itself.
+    //
+    // Require leading and trailing pipes on all tables.
+    "style": "leading_and_trailing"
+  },
+
+  // MD059 governs a prohibited list of insufficiently descriptive phrases
+  // to be used as link text. In the real world, I may need to remove certain
+  // default phrases, depending on the spec I'm given, but the default is fine
+  // for this project.
+
+  "MD060": {
+    // MD060 governs spaces within table rows. Require the delimiter row, to
+    // be aligned with the header row, but otherwise, one leading and one
+    // trailing space in each cell ("compact"). contrast "tight" which
+    // requires zero leading and trailing spaces within a cell.
+    //
+    // Note this may require an "escape hatch" for tables with short column
+    // headers as the specification requires threee hyphens minimum.
+    //
+    // An additional 1-2 characters may be needed for the alignment-specifier
+    // colons.
+    //
+    // Note my testing rendered okay in VSCode with two character delimiters
+    // such as :- and -:.
+    //
+    // https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/organizing-information-with-tables
+    "aligned_delimiter": true,
+    "style": "compact"
   }
 }
