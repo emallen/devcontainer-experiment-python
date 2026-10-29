@@ -1,21 +1,41 @@
 // See https://github.com/DavidAnson/markdownlint#optionsconfig
 // and https://github.com/DavidAnson/markdownlint-cli2#configuration
 {
-  // I want headers to be leading `#` or `##` only.
-  "MD003": { "style": "atx" },
+  "MD003": {
+    // Headers shall  be leading `#` or `##` only, not `--` or `==` next line.
+    "style": "atx"
+  },
 
-  // Use hyphen-minus (spelled dash in markdownlint) for the unordered list
-  // marker.
-  "MD004": { "style": "dash" },
+  "MD004": {
+    // Use hyphen-minus (spelled dash in markdownlint) for the unordered list
+    // marker.
+    "style": "dash"
+  },
 
-  // Enforcement of no trailing whitespace.
-  // The default allows two spaces for a `<br/>` element to be emitted.
-  // "strict", which defaults off, flags two trailning spaces when they
-  // do not actually emit a `<br/>`, such as on the last line of a paragraph.
-  // Two trailing spaces mid-paragraph is still permitted.
-  // The default permits trailing spaces in code blocks because some languages
-  // require that. In Python that's not the case, so we'll enforce it.
-  "MD009": { "code_blocks": true, "strict": true },
+  // MD009 governs enforcement of no trailing whitespace.
+  "MD009": {
+    // The default allows two spaces for a `<br/>` element to be emitted.
+    // Setting it to 0 requires use of the more visible alternative, a
+    // backslash at the eend of the line to be used instead.
+    // Given VSCode is stripping trailig whitespace on save by virtue of
+    // trim_trailing_whitespace in `.editorconfig`, let's flag this sooner.
+    "br_spaces": 0,
+
+    // The default permits trailing spaces in code blocks because some
+    // languages require that. In Python that's not the case, so we'll enforce
+    // it.
+    //
+    // Additionally with trim_trailing_whitespace, we'll give a visual signal
+    // that something is up before the save deletes the trailing whitespace.
+    "code_blocks": true,
+
+    // "strict", which defaults off, flags two trailning spaces when they
+    // do not actually emit a `<br/>`, such as on the last line of a paragraph.
+    // Two trailing spaces mid-paragraph is still permitted.
+    //
+    // I'm not sure it matters with "br_spaces" set to 0.
+    "strict": true
+  },
 
   // https://spec.commonmark.org/0.31.2/#tabs says tabs are treated as-if
   // they had a tabstop of 4. I think setting spaces_per_tab in the
@@ -23,9 +43,9 @@
   // that.
   "MD010": { "spaces_per_tab": 4 },
 
-  // Line length is disabled by default. It is the only off-by-default rule.
-  // turn it on.
   "MD013": {
+    // Line length is disabled by default. It is the only off-by-default rule.
+    // turn it on.
     "enabled": true,
 
     // I'm torn on "code_blocks". It defaults to enforcing line length
@@ -47,9 +67,145 @@
 
     // Give an escape-hatch for Markdown Tables, which can get unwieldy.
     "tables": false
-  }
+  },
 
   // MD024 governs duplicate headings. I will entertain setting siblings_only
   // should the need arise (as it will if we add a CHANGELOG.md)
 
+  "MD027": {
+    // We disable enforcement of MD027 (Only one space after blockquote)
+    // for list items with the intent of allowing ones-digit alignment of
+    // ordered list items.
+    // If this accepted strings, we would enforce it for ordered but not
+    // unordered.
+    // That is, we want the following.
+    //
+    // >  1. something
+    // > ...
+    // >  9. something else
+    // > 10. more stuff
+    //
+    // Without setting "list_items" to false, as of extension version 0.62.1
+    // the ines for 1-9 raise MD027.
+    "list_items": false
+  },
+
+  "MD029": {
+    // Require that ordered lists actually increase the number
+    // This flags for an error the default-allowed pattern of
+    //
+    // 1. item
+    // 1. item
+    // 1. item
+    //
+    // MD029 will only allow lists to begin with 1 or 0.
+    // If a list with a different start marker is desired, MD029 will need
+    // to be disabled with a "magic comment".
+    // It is not sufficient to disable the rule for the first list item; the
+    // whole list will need each list start item to have MD029 disabled.
+    // the following pattern may be the best choice.
+    //
+    // <!-- markdownlint-capture -->
+    // <!-- markdownlint-disable MD029 -->
+    // 42. The answer
+    // 43. The Question is unknown
+    // <!-- markdownlint-restore -->
+    //
+    // Finally note that markdownlint-capture and markdownlint-restore
+    // do **not** form a push/pop mechanism such as Microsoft Visual C++'s
+    // #pragma warning(push)
+    // ...
+    // #pragma warning(pop)
+    // https://learn.microsoft.com/en-us/cpp/preprocessor/warning
+    "style": "ordered"
+  },
+
+  // MD031 governs requiring blank lines before and after code fences.
+  // I will entertain setting its "list_items" to false should the need arise
+  // to have a tight list containing a code fence.
+
+  "MD033": {
+    // The explanation within the documentation for MD033, allowing br
+    // elements within tables was compelling.
+    //
+    // Note that comments appear to be allowed by MD033 without the need
+    // for manual configuration.
+    "table_allowed_elements": ["br"]
+  },
+
+  "MD035": {
+    // Requre only the use of three hyphens for a themaic break.
+    "style": "---"
+  },
+
+  // MD044 governs words that need correct capitalization. I can't think
+  // of any that apply here, but I do want to remember for later.
+
+  "MD046": {
+    // In testing, the default severity seemed to be a warning rathr than an
+    // error. This was in contrast to what intellisense told me.
+
+    "severity": "error",
+    // Require code fences (three backticks) rather than four spaces of indent
+    // for multi-line code blocks.
+    "style": "fenced"
+  },
+
+  "MD048": {
+    // Disallow use of three tildes for code fences. Enforce backticks.
+    "style": "backtick"
+  },
+
+  "MD049": {
+    // Require (weak/itaklic) emphasis of whole words to be done with
+    // underscores.
+    // internal emphais must be asterisks.
+    "style": "underscore"
+  },
+
+  "MD050": {
+    // Require strong emphasis to be done with double-asterisk, not
+    // double-underscore.
+    "style": "asterisk"
+  },
+
+  // MD051 governs link target fragments within the same document.
+  // It enforces the GitHub algorithm because CommonMark is silent on the
+  // issue. That's good enough for this project but is worth noting.
+
+  // MD052 governs requiring reference-style link targets and image urls to
+  // exist.
+  "MD052": {
+    // "ignored_labels" defaults to the string "x" to permit GitHub Flavored
+    // Markdown checkbox lists. That's acceptable for this project.
+    // This allows both cases (i.e. [x] and [X]).
+
+    // By default it permits undefined targets on things that _might_ be valid
+    // "shortcut syntax", and will render as the words in square brackets
+    // **until that becomes defined** at which time the rendering changes.
+    // See also MD054.
+    "shortcut_syntax": true
+  },
+
+  "MD053": {
+    // Override the default pattern of "//" which is to allow the following:
+    // [//]: # (This behaves like a comment)
+    "ignored_definitions": []
+  },
+
+  "MD054": {
+    // MD054 governs which types of links are permitted.
+
+    // Disallow shortcut links.
+    // See also MD052.
+    // e.g.
+    // Click [FAQ] to learn more.
+    // [FAQ]: http://example.com/FAQ
+    "shortcut": false,
+
+    // Reject silly stuff that could be an autolink
+    // [http://example.com/inlined](http://example.com/inlined) should be
+    // <http://example.com/inlined>
+    "url_inline": false
+  }
 }
