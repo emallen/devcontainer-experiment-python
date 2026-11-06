@@ -59,11 +59,11 @@
     // Optional "stern" and "strict" modes.
     //
     // "stern" bugs you if a much earlier line break could avoid going over.
-    // Leaving this off.
-    //
-    // "strict" bugs you if you've broken as early as was possible and are
-    // still over. Turning this on.
+    // Turning this on.
     "stern": true,
+
+    // "strict" bugs you if you've broken as early as was possible and are
+    // still over.  Leaving this off.
 
     // Give an escape-hatch for Markdown Tables, which can get unwieldy.
     "tables": false
